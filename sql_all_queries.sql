@@ -93,3 +93,11 @@ WHERE category='Beauty';
 SELECT * 
 FROM RETAIL
 WHERE total_sales>1000;
+
+--Write a SQL query to find the total number of transactions (transaction_id) made by each gender in each category.
+SELECT 
+COUNT(*) as total_no_of_transaction,
+gender,
+category
+FROM RETAIL
+GROUP BY gender,category
