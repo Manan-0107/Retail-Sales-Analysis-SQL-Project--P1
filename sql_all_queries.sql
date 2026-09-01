@@ -78,6 +78,13 @@ FROM RETAIL
 WHERE category = 'Clothing' AND quantity>=4 AND TO_CHAR(sale_date, 'YYYY-MM') ='2022-11';
 
 -- Write a SQL query to calculate the total sales (total_sale) for each category.:
-SELECT SUM(total_sales),category
+SELECT SUM(total_sales) total_sales_per_category,category
 FROM RETAIL
 GROUP BY category
+
+--Write a SQL query to find the average age of customers who purchased items from the 'Beauty' category.:
+SELECT ROUND(AVG(age),2) as avg_age
+FROM RETAIL
+WHERE category='Beauty';
+
+--
