@@ -65,3 +65,18 @@ SELECT COUNT(DISTINCT CUSTOMER_ID) AS TOTAL_UNIQUE_CUSTOMER_ID FROM RETAIL;
 
 SELECT DISTINCT CATEGORY AS TOTAL_UNIQUE_CATEGORY FROM RETAIL;
 
+--Main Data Analysis
+--Write a SQL query to retrieve all columns for sales made on '2022-11-05:
+
+SELECT * FROM RETAIL
+WHERE sale_date = '2022-11-05';
+
+--Write a SQL query to retrieve all transactions where the category is 'Clothing' and the quantity sold is more than 4 in the month of Nov-2022:
+
+SELECT *
+FROM RETAIL
+WHERE category = 'Clothing' AND quantity>=4 AND TO_CHAR(sale_date, 'YYYY-MM') ='2022-11';
+
+-- Write a SQL query to calculate the total sales (total_sale) for each category.:
+
+
