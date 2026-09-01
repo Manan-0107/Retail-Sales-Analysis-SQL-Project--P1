@@ -139,3 +139,12 @@ GROUP BY customer_id
 HAVING COUNT(DISTINCT category) =(SELECT COUNT(DISTINCT category) FROM RETAIL);
 
 -- Write a SQL query to create each shift and number of orders (Example Morning <12, Afternoon Between 12 & 17, Evening >17):
+SELECT COUNT(*) AS total_no_of_orders,
+CASE
+	 WHEN EXTRACT(HOUR FROM sale_time)<12 THEN 'Morning'
+	 WHEN EXTRACT(HOUR FROM sale_time) >=12 AND EXTRACT(HOUR FROM sale_time)<18 THEN 'Aftermoon'
+	 ELSE'Evening'
+END as SHIFT
+FROM RETAIL
+GROUP BY SHIFT
+
