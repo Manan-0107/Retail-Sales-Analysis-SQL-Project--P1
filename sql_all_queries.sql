@@ -114,3 +114,28 @@ GROUP BY TO_CHAR(sale_date,'MM'),TO_CHAR(sale_date,'YYYY'))t
 WHERE rank_=1;
 
 --Write a SQL query to find the top 5 customers based on the highest total sales 
+SELECT customer_id,total_sales
+FROM(
+SELECT SUM(total_sales) as total_sales
+,customer_id,
+RANK() OVER(ORDER BY SUM(total_sales) DESC) rank_
+FROM RETAIL
+GROUP BY customer_id)t
+WHERE rank_ < 6;
+
+/* Another answer for the same qeury*/
+SELECT customer_id,
+SUM(total_sales) as total_sales_per_customer_id
+FROM RETAIL
+GROUP BY 1
+ORDER BY 2 DESC 
+LIMIT 5
+
+--Write a SQL query to find the number of unique customers who purchased items from each category.:
+SELECT customer_id,
+COUNT(DISTINCT category) as count_
+FROM RETAIL
+GROUP BY customer_id
+HAVING COUNT(DISTINCT category) =(SELECT COUNT(DISTINCT category) FROM RETAIL);
+
+-- Write a SQL query to create each shift and number of orders (Example Morning <12, Afternoon Between 12 & 17, Evening >17):
