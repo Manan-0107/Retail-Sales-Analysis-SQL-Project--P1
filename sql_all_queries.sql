@@ -87,4 +87,9 @@ SELECT ROUND(AVG(age),2) as avg_age
 FROM RETAIL
 WHERE category='Beauty';
 
---
+--http://localhost:3001
+--Write a SQL query to find all transactions where the total_sale is greater than 1000.:
+
+SELECT * 
+FROM RETAIL
+WHERE total_sales>1000;
