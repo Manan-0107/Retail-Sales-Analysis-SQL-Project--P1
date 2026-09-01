@@ -101,3 +101,16 @@ gender,
 category
 FROM RETAIL
 GROUP BY gender,category
+
+--Write a SQL query to calculate the average sale for each month. Find out best selling month in each year:
+SELECT average_sales,month,year
+FROM(
+SELECT AVG(total_sales) as average_sales,
+TO_CHAR(sale_date,'MM') as month,
+TO_CHAR(sale_date,'YYYY') as year,
+RANK() OVER(PARTITION BY TO_CHAR(sale_date,'YYYY') ORDER BY AVG(total_sales) DESC) as rank_
+FROM RETAIL
+GROUP BY TO_CHAR(sale_date,'MM'),TO_CHAR(sale_date,'YYYY'))t
+WHERE rank_=1;
+
+--Write a SQL query to find the top 5 customers based on the highest total sales 
